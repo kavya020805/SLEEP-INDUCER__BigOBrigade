@@ -1,1 +1,24 @@
-Take the input N and M
+The given things that we have:
+N=Number of Inmates
+M=Number of Dorm
+p=Time taken by the inmate to fall asleep
+
+First of all we will take some of the following assumption related to the problem.
+ASSUMPIONS:-
+1)We will take the time taken by the inmate to fall asleep (i.e., p in minutes) to be the same.
+2)We will have the capacity of each dorm as N/M
+3)Same time sleeping time for all days will be same.
+
+
+
+
+Pseudocode:-
+
+int N,M,p;
+take N and M;
+Make a class Inmate with data of name , id , sleep time and p;
+make array of class inmate of length N;
+take input of inmates from a txt file in this array;
+Mkae a class dorm with data name , set of music channel and set of music;
+Take input of M dorms in an array of data type dorm class;
+
