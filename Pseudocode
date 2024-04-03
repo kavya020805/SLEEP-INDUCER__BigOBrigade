@@ -22,3 +22,13 @@ take input of inmates from a txt file in this array;
 Mkae a class dorm with data name , set of music channel and set of music;
 Take input of M dorms in an array of data type dorm class;
 
+
+Sort the inmates on the basis of their sleep times in an ascending order;
+Choose the first inmate for dorm 1 then for next inmates choose the next one which has sleep time greater than "sleeptime of previous inmate + p(say 100)";
+After traversal,again go back to the first remaining inmate and do the same process for dorm2.
+Continue the process till all the inmates are assigned
+If Number of dorms are over and yet inmates are not then output the minimum number of dorms to achieve the above task.
+End
+
+
+
