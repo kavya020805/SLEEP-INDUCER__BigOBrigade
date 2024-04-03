@@ -1,9 +1,10 @@
 # SLEEP INDUCER🌙 | BigOBrigade
 
-Group Members:-
-1)Bhavya Boda
-2)Kavya Chauhan
-3)Prince Chovatiya
+## Group Members:-
+
+1)Bhavya Boda                                                                                                                                               
+2)Kavya Chauhan                                                                                                                                          
+3)Prince Chovatiya                                                                                                                                    
 4)Tirth Gandhi
 
 ## Problem Statement
