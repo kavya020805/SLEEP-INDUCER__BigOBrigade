@@ -1,0 +1,21 @@
+The existing question is that
+You are to build a Sleep Inducer. There are N inmates in total. Each has his/her own sleep time (randomly initialized). The Sleep Inducer is installed in a hostel with M sleeping dorms. It notes every inmate’s daily sleeping habits and starts sleep-inducing music at bedtime. It works for multiple inmates. However, the music should not continue beyond p minutes after going to bed (assuming it takes that much time for every inmate to fall asleep). The Sleep Inducer should be able to play for all of them without disturbing anyone (i.e., playing music while someone is asleep). Therefore, the correct number of inmates for each dorm must be assigned before starting to operate. 
+Comments:
+Input data will be a file  (can be txt or xls) with records in the format:
+Inmate record
+Inmate name
+Earpod ID
+Inmate sleep time (for each of 7 days)
+Time taken by the inmate to fall asleep (i.e., p in minutes)
+Dorm record
+Dorm name
+Set of music channels (IDs) assigned
+Set of music per channel (IDs) 
+Assume inmates have earphones/pods to listen with. Each pod is connected to a specific channel where only one music can be played at any given time.
+When one inmate falls asleep, his earpod deactivates, and the channel is assigned to another earpod (i.e., inmate in the same room), provided that the inmate is still awake.
+Assume that the music system is centralized for a given room (with multiple dedicated channels that are assigned and released from time to time). Different music (and corresponding channels) can be played in different rooms.
+
+The question could be made more challenging by adding:
+1> Special Requirements: Some inmates might want to stay in same room in a group or pair.
+2> Preferences: Inmates may have their own favourite music or may have preferences related to the dorm location and etc.
+3> Dorm Capacity: Capacity of each dorm can be mentioned. Once full, other inmates need to se the next dorm.
