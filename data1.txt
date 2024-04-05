@@ -1,20 +1,10 @@
-Alice 1 10 3
-Bob 2 8 2
-Charlie 3 12 4
-David 4 9 2
-Emma 5 11 3
-Frank 6 7 1
-Grace 7 13 4
-Henry 8 6 1
-Ivy 9 14 4
-Jack 10 5 1
-Katie 11 15 5
-Liam 12 4 1
-Mia 13 16 5
-Noah 14 3 1
-Olivia 15 17 6
-Peter 16 2 1
-Quinn 17 18 6
-Ryan 18 1 1
-Sophia 19 19 6
-Thomas 20 0 1
+5
+Alice 767 23 24 25 26 27 28 24 10
+Bob 202 15 10 20 25 30 35 32 60
+Tirth 240 55 60 62 64 59 72 65 34
+Prince 687 89 80 20 30 40 60 70 8
+Bhavya 354 21 24 27 29 32 15 24 2
+4
+A 2
+B 3
+C 1
