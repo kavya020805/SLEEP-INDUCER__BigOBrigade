@@ -17,11 +17,32 @@ class Inmate{
         }
 };
 
+class Dorm{
+    private:
+        string name;
+        int no_of_channel;
+        int capacity;
+        string *str;
+    public:
+        Dorm(int n , int  m){
+            capacity=ceil((n*(1.0))/m);
+            cin >> name >> no_of_channel;
+            str= new string [capacity];
+        }
+        private:
+
+};
+
 int main(){
-    freopen("input.txt","r",stdin);
+    freopen("data.txt","r",stdin);
     freopen("output.txt","w",stdout);
     
     int Number_Inmate;cin >> Number_Inmate;
-    Inmate I1;
+    Inmate I1[Number_Inmate];
+    int Number_of_Dorm;
+    cin >> Number_of_Dorm;
+    Dorm D1[Number_of_Dorm];
+    
+
     return 0;
 }
