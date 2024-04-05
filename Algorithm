@@ -23,4 +23,12 @@ Algorithm: Assigning Inmates to Dorms
             - Update lastAssignedTime to inmate's sleep time.
     d. Increment dormIndex.
 15. If assignedInmatesCount is less than N, output the minimum number of dorms required to accommodate all inmates.
-16. End.
+16. Sort the dorms based on their capacity in descending order.
+17. Initialize a variable remainingInmates to N - assignedInmatesCount.
+18. Loop through the sorted dorms:
+    a. If remainingInmates <= 0, break the loop.
+    b. Calculate the number of inmates that can be accommodated in the current dorm (min(remainingInmates, currentDorm.capacity)).
+    c. Reduce remainingInmates by the number of inmates assigned to the current dorm.
+    d. Output the total number of dorms required to accommodate all inmates.
+
+19. End.
