@@ -19,3 +19,6 @@ The question could be made more challenging by adding:
 1> Special Requirements: Some inmates might want to stay in same room in a group or pair.
 2> Preferences: Inmates may have their own favourite music or may have preferences related to the dorm location and etc.
 3> Dorm Capacity: Capacity of each dorm can be mentioned. Once full, other inmates need to se the next dorm.
+4> Gender based assignment: Ensuring that inmates assigned in the dorms are of same gender.
+5> Dorm transfer restrictions: Inmates may restrict from transferring dorms multiple times. So number of transfers per week can be limited for every inmate.
+
