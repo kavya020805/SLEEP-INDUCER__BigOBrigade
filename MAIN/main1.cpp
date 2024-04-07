@@ -1,4 +1,9 @@
-
+/*
+INFO:
+In this code we didn't use any complex data structure like Class, Stack, Queue , etc.
+Also we took all the input in the console directly from the user in the terminal.
+So if you run this code then you need to give inout in terminal console and then only it will run. 
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
