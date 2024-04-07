@@ -10,7 +10,7 @@ using namespace std;
 
 typedef long long int ll;
 
-bool compareStacks(const stack<pair<pair<int, int>, string>>& s1, const stack<pair<pair<int, int>, string>>& s2) {
+bool compareStacks(const stack<pair<pair<int, int>, pair<string, int>>>& s1, const stack<pair<pair<int, int>, pair<string, int>>>& s2) {
     return s1.size() < s2.size(); // Sort in descending order
 }
 
@@ -55,14 +55,14 @@ int main() {
     cout << endl;
     for(int day = 1; day <= 1; day++) {
         cout << "Day " << day << ":" << endl;
-        vector<pair<pair<int, int>, string>> a; // Pair of pair<int, int> and string
+        vector<pair<pair<int, int>, pair<string, int>>> a; // Pair of pair<int, int> and pair<string, int>
         for (int i = 0; i < Number_Inmate; i++) {
-            a.push_back({{Day[day - 1][i], p[i]}, Names[i]});
+            a.push_back({{Day[day - 1][i], p[i]}, {Names[i], Earpod_ID[i]}});
         }
         sort(a.begin(), a.end());
 
-        vector<stack<pair<pair<int,int>, string>>> v; // Stack of pair of pair<int, int> and string
-        v.push_back(stack<pair<pair<int,int>, string>>());
+        vector<stack<pair<pair<int,int>, pair<string, int>>>> v; // Stack of pair of pair<int, int> and pair<string, int>
+        v.push_back(stack<pair<pair<int,int>, pair<string, int>>>());
         v.back().push({{a[0].first.first, a[0].first.second}, a[0].second}); // Pushing sleep time, penalty, and name
         for(int i = 1; i < Number_Inmate; i++) {
             int c = 0;
@@ -74,7 +74,7 @@ int main() {
                 }
             }
             if(c == 0) {
-                v.push_back(stack<pair<pair<int,int>, string>> ());
+                v.push_back(stack<pair<pair<int,int>, pair<string, int>>> ());
                 v.back().push({{a[i].first.first, a[i].first.second}, a[i].second});
             }
         }
@@ -95,7 +95,7 @@ int main() {
                     tmp1++;
                     if(j < x) {
                         while(!v[j].empty()) {
-                            cout << v[j].top().second << " ";
+                            cout << v[j].top().second.first << " (ID: " << v[j].top().second.second << ") "; // Output inmate name and Earpod ID
                             v[j].pop();
                         }
                         j++;
@@ -107,8 +107,6 @@ int main() {
                 cout << endl;
             }
         }
-        // Reset v vector and k index for the next day
-        // v.clear();
     }
 
     outFile.close();
