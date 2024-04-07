@@ -27,6 +27,15 @@ bool compareStacks(const stack<pair<pair<int, int>, pair<string, int>>>& s1, con
 }
 
 int main() {
+    // Define ANSI escape codes for text color
+    #define ANSI_COLOR_RED     "\x1b[31m"
+    #define ANSI_COLOR_ORANGE  "\x1b[38;5;208m" // Orange color code
+    #define ANSI_COLOR_YELLOW  "\x1b[33m"
+    #define ANSI_COLOR_GREEN   "\x1b[32m"
+    #define ANSI_COLOR_BLUE    "\x1b[34m"
+    #define ANSI_COLOR_PURPLE  "\x1b[35m" // Purple color code
+    #define ANSI_COLOR_RESET   "\x1b[0m"
+
     int Number_Inmate;
     cout << "Enter number of inmates: ";
     cin >> Number_Inmate;
@@ -69,7 +78,7 @@ int main() {
     
     cout << endl;
     for(int day = 1; day <= 1; day++) { // Corrected loop condition
-        cout << "Day " << day << ":" << endl;
+        cout << ANSI_COLOR_ORANGE << "Day " << day << ":" << ANSI_COLOR_RESET << endl;
         vector<pair<pair<int, int>, pair<string, int>>> a; // Pair of pair<int, int> and pair<string, int>
         for (int i = 0; i < Number_Inmate; i++) {
             a.push_back({{inmates[i].sleepPattern[day - 1], inmates[i].penalty}, {inmates[i].name, inmates[i].earpodID}});
@@ -99,18 +108,18 @@ int main() {
         cout << x << " " << summ << endl;
         int j = 0;
         if(x > summ) {
-            cout << "Not possible\n";
+            cout << ANSI_COLOR_RED << "Not possible" << ANSI_COLOR_RESET << endl;
         }
         else {
             for(int i = 0; i < numDorms; i++) {
-                cout << "dorm " << i + 1 << " " << endl;
+                cout << ANSI_COLOR_PURPLE << "dorm " << i + 1 << " " << ANSI_COLOR_RESET << endl;
                 int tmp1 = Channel[i];
                 while(Channel[i] > 0) {
-                    cout << "Channel-" << tmp1<< ": ";
+                    cout << ANSI_COLOR_BLUE << "Channel-" << tmp1<< ": ";
                     tmp1--;
                     if(j < x) {
                         while(!v[j].empty()) {
-                            cout << v[j].top().second.first << " (ID: " << v[j].top().second.second << ") "; // Output inmate name and Earpod ID
+                            cout << ANSI_COLOR_GREEN << v[j].top().second.first << " (ID: " << v[j].top().second.second << ") "; // Output inmate name and Earpod ID
                             v[j].pop();
                         }
                         j++;
@@ -124,10 +133,9 @@ int main() {
         }
     }
     
-
     outFile.close();
 
-    cout << "Output has been written to output.txt" << endl;
+    cout << ANSI_COLOR_PURPLE << "Output has been written to output.txt" << ANSI_COLOR_RESET << endl;
 
     return 0;
 }
