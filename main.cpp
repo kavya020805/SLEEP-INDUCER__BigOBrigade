@@ -1,91 +1,119 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <stack>
+#include <algorithm>
+#include <numeric>
+#include <cmath>
+
 using namespace std;
 
-int Number_Inmate;
+typedef long long int ll;
 
-class Inmate {
-private:
-    vector<string> Names;
-    vector<int> Earpod_ID;
-    vector<int> Day1;
-    vector<int> Day2;
-    vector<int> Day3;
-    vector<int> Day4;
-    vector<int> Day5;
-    vector<int> Day6;
-    vector<int> Day7;
-    vector<int> p;
-
-public:
-    Inmate() {
-        Names.resize(Number_Inmate);
-        Earpod_ID.resize(Number_Inmate);
-        Day1.resize(Number_Inmate);
-        Day2.resize(Number_Inmate);
-        Day3.resize(Number_Inmate);
-        Day4.resize(Number_Inmate);
-        Day5.resize(Number_Inmate);
-        Day6.resize(Number_Inmate);
-        Day7.resize(Number_Inmate);
-        p.resize(Number_Inmate);
-    }
-
-    void input() {
-        for(int i = 0; i < Number_Inmate; i++) {
-            cin >> Names[i] >> Earpod_ID[i];
-            cin >> Day1[i] >> Day2[i] >> Day3[i] >> Day4[i] >> Day5[i] >> Day6[i] >> Day7[i];
-            cin >> p[i];
-        }
-    }
-
-    void output() {
-        for(int day = 1; day <= 7; day++) {
-            vector<int> indices(Number_Inmate);
-            iota(indices.begin(), indices.end(), 0);
-
-            sort(indices.begin(), indices.end(), [&](int a, int b) {
-                switch(day) {
-                    case 1: return Day1[a] < Day1[b];
-                    case 2: return Day2[a] < Day2[b];
-                    case 3: return Day3[a] < Day3[b];
-                    case 4: return Day4[a] < Day4[b];
-                    case 5: return Day5[a] < Day5[b];
-                    case 6: return Day6[a] < Day6[b];
-                    case 7: return Day7[a] < Day7[b];
-                    default: return false;
-                }
-            });
-
-            cout << "Day " << day << ":" << endl;
-            for(int i = 0; i < Number_Inmate; i++) {
-                int idx = indices[i];
-                cout << Names[idx] << ' ' << Earpod_ID[idx] << ' ';
-                switch(day) {
-                    case 1: cout << Day1[idx]; break;
-                    case 2: cout << Day2[idx]; break;
-                    case 3: cout << Day3[idx]; break;
-                    case 4: cout << Day4[idx]; break;
-                    case 5: cout << Day5[idx]; break;
-                    case 6: cout << Day6[idx]; break;
-                    case 7: cout << Day7[idx]; break;
-                }
-                cout << ' ' << p[idx] << endl;
-            }
-            cout << endl;
-        }
-    }
-};
+bool compareStacks(const stack<pair<pair<int, int>, string>>& s1, const stack<pair<pair<int, int>, string>>& s2) {
+    return s1.size() < s2.size(); // Sort in descending order
+}
 
 int main() {
-    freopen("TestData1.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    
+    int Number_Inmate;
+    cout << "Enter number of inmates: ";
     cin >> Number_Inmate;
-    cout << Number_Inmate << endl;
 
-    Inmate INMATE;
-    INMATE.input();
-    INMATE.output();
+    vector<string> Names(Number_Inmate);
+    vector<int> Earpod_ID(Number_Inmate);
+    vector<vector<int>> Day(7, vector<int>(Number_Inmate));
+    vector<int> p(Number_Inmate);
+
+    cout << "Enter inmate data (Name Earpod_ID Day1 Day2 Day3 Day4 Day5 Day6 Day7 Penalty):" << endl;
+    for(int i = 0; i < Number_Inmate; i++) {
+        cin >> Names[i] >> Earpod_ID[i];
+        for(int j = 0; j < 7; j++) {
+            cin >> Day[j][i];
+        }
+        cin >> p[i];
+    }
+
+    int numDorms;
+    cout << "Enter number of dorms: ";
+    cin >> numDorms;
+
+    vector<int> Channel(numDorms);
+    int summ = 0;
+    vector<pair<string, int>> dorms;
+    for (int i = 0; i < numDorms; ++i) {
+        string dormName;
+        int numChannels;
+        cout << "Enter dorm name and number of channels for dorm " << i + 1 << ": ";
+        cin >> dormName >> numChannels;
+        Channel[i] = numChannels;
+        summ += numChannels;
+        dorms.push_back({dormName, numChannels});
+    }
+
+    ofstream outFile("output.txt");
+    
+    cout << endl;
+    for(int day = 1; day <= 1; day++) {
+        cout << "Day " << day << ":" << endl;
+        vector<pair<pair<int, int>, string>> a; // Pair of pair<int, int> and string
+        for (int i = 0; i < Number_Inmate; i++) {
+            a.push_back({{Day[day - 1][i], p[i]}, Names[i]});
+        }
+        sort(a.begin(), a.end());
+
+        vector<stack<pair<pair<int,int>, string>>> v; // Stack of pair of pair<int, int> and string
+        v.push_back(stack<pair<pair<int,int>, string>>());
+        v.back().push({{a[0].first.first, a[0].first.second}, a[0].second}); // Pushing sleep time, penalty, and name
+        for(int i = 1; i < Number_Inmate; i++) {
+            int c = 0;
+            for(int j = 0; j < v.size(); j++) {
+                if(abs(v[j].top().first.first - a[i].first.first) >= v[j].top().first.second) {
+                    c++;
+                    v[j].push({{a[i].first.first, a[i].first.second}, a[i].second});
+                    break;
+                }
+            }
+            if(c == 0) {
+                v.push_back(stack<pair<pair<int,int>, string>> ());
+                v.back().push({{a[i].first.first, a[i].first.second}, a[i].second});
+            }
+        }
+        sort(v.begin(), v.end(), compareStacks);
+
+        int x = v.size();
+        cout << x << " " << summ << endl;
+        int j = 0;
+        if(x > summ) {
+            cout << "Not possible\n";
+        }
+        else {
+            for(int i = 0; i < numDorms; i++) {
+                cout << "dorm " << i + 1 << " " << endl;
+                int tmp1 = 0;
+                while(Channel[i] > 0) {
+                    cout << "Channel-" << tmp1 + 1 << ": ";
+                    tmp1++;
+                    if(j < x) {
+                        while(!v[j].empty()) {
+                            cout << v[j].top().second << " ";
+                            v[j].pop();
+                        }
+                        j++;
+                    }
+                    cout << endl;
+                    Channel[i]--;
+                }
+                j = 0;
+                cout << endl;
+            }
+        }
+        // Reset v vector and k index for the next day
+        // v.clear();
+    }
+
+    outFile.close();
+
+    cout << "Output has been written to output.txt" << endl;
 
     return 0;
 }
