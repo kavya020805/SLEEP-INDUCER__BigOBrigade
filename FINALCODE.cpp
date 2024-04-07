@@ -10,6 +10,18 @@ using namespace std;
 
 typedef long long int ll;
 
+class Inmate {
+public:
+    string name;
+    int earpodID;
+    vector<int> sleepPattern;
+    int penalty;
+
+    // Constructor
+    Inmate(string name, int earpodID, const vector<int>& sleepPattern, int penalty) 
+        : name(name), earpodID(earpodID), sleepPattern(sleepPattern), penalty(penalty) {}
+};
+
 bool compareStacks(const stack<pair<pair<int, int>, pair<string, int>>>& s1, const stack<pair<pair<int, int>, pair<string, int>>>& s2) {
     return s1.size() < s2.size(); // Sort in descending order
 }
@@ -19,19 +31,21 @@ int main() {
     cout << "Enter number of inmates: ";
     cin >> Number_Inmate;
 
-    vector<string> Names(Number_Inmate);
-    vector<int> Earpod_ID(Number_Inmate);
-    vector<vector<int>> Day(7, vector<int>(Number_Inmate)); // Changed to vector of vectors
-
-    vector<int> p(Number_Inmate);
+    vector<Inmate> inmates;
 
     cout << "Enter inmate data (Name Earpod_ID Day1 Day2 Day3 Day4 Day5 Day6 Day7 Penalty):" << endl;
     for(int i = 0; i < Number_Inmate; i++) {
-        cin >> Names[i] >> Earpod_ID[i];
+        string name;
+        int earpodID, penalty;
+        vector<int> sleepPattern(7);
+
+        cin >> name >> earpodID;
         for(int j = 0; j < 7; j++) {
-            cin >> Day[j][i]; // Changed to Day[j][i]
+            cin >> sleepPattern[j];
         }
-        cin >> p[i];
+        cin >> penalty;
+
+        inmates.push_back(Inmate(name, earpodID, sleepPattern, penalty));
     }
 
     int numDorms;
@@ -58,7 +72,7 @@ int main() {
         cout << "Day " << day << ":" << endl;
         vector<pair<pair<int, int>, pair<string, int>>> a; // Pair of pair<int, int> and pair<string, int>
         for (int i = 0; i < Number_Inmate; i++) {
-            a.push_back({{Day[day - 1][i], p[i]}, {Names[i], Earpod_ID[i]}});
+            a.push_back({{inmates[i].sleepPattern[day - 1], inmates[i].penalty}, {inmates[i].name, inmates[i].earpodID}});
         }
         sort(a.begin(), a.end());
 
@@ -93,8 +107,7 @@ int main() {
                 int tmp1 = Channel[i];
                 while(Channel[i] > 0) {
                     cout << "Channel-" << tmp1<< ": ";
-                    tmp1--
-                    ;
+                    tmp1--;
                     if(j < x) {
                         while(!v[j].empty()) {
                             cout << v[j].top().second.first << " (ID: " << v[j].top().second.second << ") "; // Output inmate name and Earpod ID
@@ -110,6 +123,7 @@ int main() {
             }
         }
     }
+    
 
     outFile.close();
 
