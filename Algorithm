@@ -1,34 +1,27 @@
 Algorithm: Assigning Inmates to Dorms
 
-1. Start
-2. Declare variables N, M, and p to store the number of inmates, number of dorms, and sleep time threshold increment, respectively.
-3. Take input for N and M.
-4. Define a class Inmate with attributes name, id, sleep time, and p.
+1. Start.
+2. Declare variables N and M to store the number of inmates and number of dorms respectively.
+3. Read N and M from the input CSV file.
+4. Define a class Inmate with attributes name, earpod id, sleep time, and p.
 5. Create an array of class Inmate with a length of N.
-6. Take input of inmate details from a text file and store them in the array.
-7. Define a class Dorm with attributes name, set of music channels, and set of music.
+6. Read inmate details from the input CSV file and store them in the array.
+7. Define a class Dorm with attributes name and a vector of music channels.
 8. Create an array of dorms with a length of M.
-9. Take input for M dorms and store them in the array.
+9. Read dorm details from the input CSV file and store them in the array.
 10. Sort the inmates based on their sleep times in ascending order.
 11. Initialize a variable dormIndex to 0 to keep track of the current dorm being assigned.
 12. Initialize a variable lastAssignedTime to 0 to keep track of the last assigned inmate's sleep time.
 13. Initialize a variable assignedInmatesCount to 0 to keep track of the number of inmates assigned.
-14. Loop until all inmates are assigned:
-    a. If dormIndex is greater than or equal to M, break the loop.
-    b. Initialize a variable currentDorm with the dorm at index dormIndex.
-    c. For each inmate in the sorted array:
-        i. If the inmate's sleep time is greater than or equal to lastAssignedTime + p:
-            - Assign the inmate to currentDorm.
-            - Increment assignedInmatesCount.
-            - Update lastAssignedTime to inmate's sleep time.
-    d. Increment dormIndex.
-15. If assignedInmatesCount is less than N, output the minimum number of dorms required to accommodate all inmates.
-16. Sort the dorms based on their capacity in descending order.
-17. Initialize a variable remainingInmates to N - assignedInmatesCount.
-18. Loop through the sorted dorms:
-    a. If remainingInmates <= 0, break the loop.
-    b. Calculate the number of inmates that can be accommodated in the current dorm (min(remainingInmates, currentDorm.capacity)).
-    c. Reduce remainingInmates by the number of inmates assigned to the current dorm.
-    d. Output the total number of dorms required to accommodate all inmates.
-
-19. End.
+14. Iterate until all inmates are assigned:
+	a. If dormIndex is greater than or equal to M, break the loop.
+	b. Initialize a variable currentDorm with the dorm at index dormIndex.
+	c. For each inmate in the sorted array:
+    	i. If the inmate's sleep time is greater than or equal to lastAssignedTime + p:
+        	- Assign the inmate to a specific channel in currentDorm.
+        	- Increment assignedInmatesCount.
+        	- Update lastAssignedTime to inmate's sleep time.
+	d. Increment dormIndex.
+15. If assignedInmatesCount is less than N, print "Not Possible".
+16. Iterate through each dorm and print the names of inmates assigned in it.
+17. End.
