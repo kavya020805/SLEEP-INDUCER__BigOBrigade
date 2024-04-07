@@ -21,14 +21,15 @@ int main() {
 
     vector<string> Names(Number_Inmate);
     vector<int> Earpod_ID(Number_Inmate);
-    vector<vector<int>> Day(7, vector<int>(Number_Inmate));
+    vector<vector<int>> Day(7, vector<int>(Number_Inmate)); // Changed to vector of vectors
+
     vector<int> p(Number_Inmate);
 
     cout << "Enter inmate data (Name Earpod_ID Day1 Day2 Day3 Day4 Day5 Day6 Day7 Penalty):" << endl;
     for(int i = 0; i < Number_Inmate; i++) {
         cin >> Names[i] >> Earpod_ID[i];
         for(int j = 0; j < 7; j++) {
-            cin >> Day[j][i];
+            cin >> Day[j][i]; // Changed to Day[j][i]
         }
         cin >> p[i];
     }
@@ -53,7 +54,7 @@ int main() {
     ofstream outFile("output.txt");
     
     cout << endl;
-    for(int day = 1; day <= 1; day++) {
+    for(int day = 1; day <= 1; day++) { // Corrected loop condition
         cout << "Day " << day << ":" << endl;
         vector<pair<pair<int, int>, pair<string, int>>> a; // Pair of pair<int, int> and pair<string, int>
         for (int i = 0; i < Number_Inmate; i++) {
@@ -89,10 +90,11 @@ int main() {
         else {
             for(int i = 0; i < numDorms; i++) {
                 cout << "dorm " << i + 1 << " " << endl;
-                int tmp1 = 0;
+                int tmp1 = Channel[i];
                 while(Channel[i] > 0) {
-                    cout << "Channel-" << tmp1 + 1 << ": ";
-                    tmp1++;
+                    cout << "Channel-" << tmp1<< ": ";
+                    tmp1--
+                    ;
                     if(j < x) {
                         while(!v[j].empty()) {
                             cout << v[j].top().second.first << " (ID: " << v[j].top().second.second << ") "; // Output inmate name and Earpod ID
