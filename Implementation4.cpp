@@ -128,17 +128,26 @@ int main(){
     {
     for(int i=0;i<m;i++)
     {
-            cout << "dorm " << i+1 << " ";
+            cout << "dorm " << i+1 << " \n";
+            int k=1;
         while(c[i]--)
         {
+            
+            cout << "Channel " << k << ": ";
+            if(j==v.size())
+            break;
             while(!v[j].empty())
             {
                 cout << v[j].top().first << " ";
                 v[j].pop();
             }
             j++;
+            k++;
+            cout << endl;
+            
         }
         cout << endl;
+        
     }
     }
     
