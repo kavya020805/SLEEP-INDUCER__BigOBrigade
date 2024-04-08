@@ -73,8 +73,6 @@ int main() {
         summ += numChannels;
         dorms.push_back({dormName, numChannels});
     }
-
-    ofstream outFile("output.txt");
     
     cout << endl;
     for(int day = 1; day <= 1; day++) { // Corrected loop condition
@@ -132,10 +130,6 @@ int main() {
             }
         }
     }
-    
-    outFile.close();
-
-    cout << ANSI_COLOR_PURPLE << "Output has been written to output.txt" << ANSI_COLOR_RESET << endl;
 
     return 0;
 }
